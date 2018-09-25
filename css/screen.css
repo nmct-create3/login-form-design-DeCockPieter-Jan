@@ -2,12 +2,47 @@
 #FONTS
 \*------------------------------------*/
 
+@font-face {
+    font-family: "Inter UI";
+    font-weight: 400;
+    src: url("../fonts/Inter-UI-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter UI";
+    font-weight: 600;
+    src: url("../fonts/Inter-UI-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Inter UI";
+    font-weight: 700;
+    src: url("../fonts/Inter-UI-Bold.woff2") format("woff2");
+}
+
 /*------------------------------------*\
 #Variables
 \*------------------------------------*/
 
 :root {
-
+    --color-alpha: #3385FF;
+    --color-alpha-xx-light: #DCEAFF;;
+    --color-alpha-x-light: #81ADF0;
+    --color-alpha-light: #4F95FF;
+    --color-alpha: #3385FF;
+    --color-alpha-dark: #2E77E6;
+    --color-alpha-dark: #1B4186;
+    --color-neutral-xxxx-light: #F5F6FA;
+    --color-neutral-xxx-light: #E2E3E7;
+    --color-neutral-xx-light: #CACCD4;
+    --color-neutral-x-light: #B5B6C0;
+    --color-neutral-light: #A0A1AD;
+    --color-neutral: #8B8C9A;
+    --color-neutral-dark: #757787;
+    --color-neutral-x-dark: #606274;
+    --color-neutral-xx-dark: #4B4C60;
+    --color-neutral-xxx-dark: #35374D;
+    --color-neutral-xxxx-dark: #20223A;
 }
 
 /* CSS variables here */
@@ -25,12 +60,13 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
-    color: grey;
+    font-family: "Inter UI", Helvetica, arial, sans-serif;
+    color: var(--color-neutral-xxxx-dark);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: white;
+    background-color: var(--color-neutral-xxxx-light);
+    /* min-height: 100vh; */
 }
 
 *,
@@ -47,13 +83,13 @@ html {
 */
 
 ::-moz-selection {
-    background: HotPink;
+    background: var(--color-alpha);
     color: white;
     text-shadow: none;
 }
 
 ::selection {
-    background: HotPink;
+    background: var(--color-alpha);
     color: white;
     text-shadow: none;
 }
@@ -158,18 +194,24 @@ hr {
 }
 
 a {
-    color: HotPink;
+    color: var(--color-alpha);
+    text-decoration: none;
     transition: all .1s ease-in-out;
 }
 
 a:visited,
 a:active {
-    color: HotPink;
+    /* color: darkblue; */
 }
 
 a:hover,
 a:focus {
-    color: DeepPink;
+    color: darkblue;
+}
+
+input,
+label {
+    display: block;
 }
 
 /*------------------------------------*\
@@ -189,6 +231,10 @@ a:focus {
 
 .o-row--login {
     /* stuff here to align the card */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* size modifiers */
@@ -432,17 +478,77 @@ a:focus {
     Website main logo
 */
 
+.c-logo {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-logo__symbol {
+    height: 100%;
+    display: block;
+}
+
+.c-logo__symbol--circle1 {
+    fill: #20223A;
+}
+
+.c-logo__symbol--circle2 {
+    fill: var(--color-alpha);
+}
+
+.c-logo__symbol--circle3 {
+    fill: #1B4186;
+}
+
+.u-background-color-gradient .c-logo__symbol--circle1,
+.u-background-color-gradient .c-logo__symbol--circle2,
+.u-background-color-gradient .c-logo__symbol--circle3 {
+    fill: white;
+}
+
 /*
     Component: Card
     ---
     Card with box shadow
 */
 
+.c-card {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.07);
+}
+
+.c-card__body {
+    padding: 48px;
+}
+
+.c-card__title {
+    padding-top: 48px;
+    padding-bottom: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.c-card__footer {
+    border-top: 1px solid #E2E3E7;
+    padding-top: 24px;
+    text-align: center;
+}
+
 /*
     Component: Forms
     ---
     Everything form related here
 */
+
+.c-form-field--option {
+    display: flex;
+    align-items: center;
+}
 
 /*
     Component: Input
@@ -451,10 +557,36 @@ a:focus {
 */
 
 .c-input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #E2E3E7;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    color: inherit;
+    padding: 10px;
+}
 
+.c-input--option {
+    border: 1px solid #E2E3E7;
+    width: 16px;
+    height: 16px;
+}
+
+.c-input--option:checked {
+    background-color: var(--color-alpha-light);
+}
+
+.c-input--width {
+    width: 100%;
 }
 
 .c-input:focus {
+    outline: none;
+    border: 1px solid #81ADF0;
+    box-shadow: 0 0 2px 2px #81ADF0;
 }
 
 /*
@@ -464,7 +596,15 @@ a:focus {
 */
 
 .c-label {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 8px;
+    color: var(--color-neutral-x-dark);
+}
 
+.c-label--option {
+    margin-bottom: 0;
+    margin-left: 8px;
 }
 
 /* If a input is focused within the form-field class change te color of the label */
@@ -533,19 +673,31 @@ a:focus {
 */
 
 .c-button {
-
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    width: 100%;
+    color: white;
+    background-color: var(--color-alpha);
+    border: 1px solid #2E77E6;
+    border-radius: 4px;
+    padding: 10px;
+    outline: none;
 }
 
 .c-button:hover {
-
+    background-color: #1B4186;
+    cursor: pointer;
+    border: 1px solid #81ADF0;
+    box-shadow: 0 0 2px 2px #81ADF0;
 }
 
 .c-button:focus {
-
+    background-color: #1B4186;
 }
 
 .c-button:active {
-
+    background-color: #1B4186;
 }
 
 .c-button--block {
@@ -563,11 +715,15 @@ a:focus {
 */
 
 .u-color-neutral-base {
-    color: Silver;
+    color: var(--color-neutral-light);
 }
 
 .u-color-neutral-dark {
-    color: Black;
+    color: var(--color-neutral-dark);
+}
+
+.u-background-color-gradient {
+    background-image: linear-gradient(to bottom right, #4F95FF, #2E77E6);
 }
 
 /*
